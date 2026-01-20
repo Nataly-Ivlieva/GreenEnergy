@@ -1,0 +1,58 @@
+# ===== OS =====
+.DS_Store
+Thumbs.db
+
+# ===== IDE =====
+# IntelliJ IDEA
+.idea/
+*.iml
+out/
+
+# VS Code
+.vscode/
+
+# ===== Java / Maven / Gradle =====
+target/
+build/
+.gradle/
+!.mvn/wrapper/maven-wrapper.jar
+
+# Logs
+*.log
+
+# ===== Spring Boot =====
+/logs/
+spring.log
+
+# ===== Environment variables =====
+.env
+.env.*
+
+# ===== Docker =====
+docker-compose.override.yml
+
+# ===== Data / Datasets =====
+data/
+datasets/
+*.jsonl
+*.csv
+*.parquet
+
+# ===== ML / Python (for next phase) =====
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env-venv/
+.ipynb_checkpoints/
+
+# ===== Model artifacts =====
+models/
+*.pkl
+*.joblib
+*.h5
+*.onnx
+
+# ===== Temporary files =====
+tmp/
+temp/

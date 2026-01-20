@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: generator-simulator
+
+server:
+  port: 8081
+
+generator:
+  startDate: 2023-01-01
+  endDate: 2025-12-31
+  generators: 50
+  outputFile: data/historical/historical_events.jsonl
+
+logging:
+  level:
+    root: INFO
