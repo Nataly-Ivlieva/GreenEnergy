@@ -1,25 +1,26 @@
-package com.green.energy.api.controller.dto;
+package com.green.energy.api.dto;
 
-import com.green.energy.api.domain.AnomalyType;
-import com.green.energy.api.domain.GeneratorType;
-
-import java.time.Instant;
+import java.time.OffsetDateTime;
+import java.util.UUID;
 
 public class EnergyMeasurementRequest {
 
-    public String generatorId;
+    public UUID generatorId;
     public String generatorType;
+
     public Double latitude;
     public Double longitude;
-    public Instant timestamp;
+    public OffsetDateTime timestamp;
 
+    public Double expectedPowerKw;
+    public Double actualPowerKw;
+
+    public Boolean anomalous;
+    public String anomalyType;
     public Double maxCapacityKw;
     public Double temperatureC;
     public Double windSpeedMs;
     public Double solarIrradianceWm2;
     public Double precipitationMm;
     public Double cloudCover;
-
-    public Double actualPowerKw;
 }
-

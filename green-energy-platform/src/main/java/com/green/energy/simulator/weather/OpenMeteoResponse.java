@@ -1,12 +1,10 @@
 package com.green.energy.simulator.weather;
 
 import lombok.Data;
-
 import java.util.List;
 
 @Data
 public class OpenMeteoResponse {
-
     private Hourly hourly;
 
     @Data

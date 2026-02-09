@@ -1,4 +1,4 @@
-package com.green.energy.simulator.model;
+package com.green.energy.simulation.generator;
 
 public enum GeneratorType {
     SOLAR,

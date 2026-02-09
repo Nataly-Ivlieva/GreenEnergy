@@ -1,4 +1,3 @@
-package com.green.energy.api.dto;
 package com.green.energy.api.weather.dto;
 
 public class OpenMeteoResponse {

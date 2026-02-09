@@ -1,6 +1,5 @@
-package com.green.energy.simulator.weather;
+package com.green.energy.simulation.weather;
 
-import com.green.energy.simulation.weather.WeatherSnapshot;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 

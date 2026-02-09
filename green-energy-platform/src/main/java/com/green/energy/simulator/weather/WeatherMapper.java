@@ -1,5 +1,6 @@
 package com.green.energy.simulator.weather;
 
+import com.green.energy.simulation.weather.WeatherSnapshot;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,9 +8,7 @@ import java.util.List;
 public class WeatherMapper {
 
     public static WeatherTimeSeries map(OpenMeteoResponse response) {
-
-        List<WeatherDataPoint> points = new ArrayList<>();
-
+        List<WeatherSnapshot> points = new ArrayList<>();
         var h = response.getHourly();
 
         for (int i = 0; i < h.getTime().size(); i++) {
@@ -19,13 +18,13 @@ public class WeatherMapper {
                     raw.length() == 16
                             ? Instant.parse(raw + ":00Z")
                             : Instant.parse(raw + "Z");
-            points.add(new WeatherDataPoint(
+            points.add(new WeatherSnapshot(
                     timestamp,
                     h.getTemperature_2m().get(i),
                     h.getWind_speed_10m().get(i),
-                    h.getShortwave_radiation().get(i),   // ☀ irradiance
-                    h.getPrecipitation().get(i),      // 🌧 rain
-                    h.getCloudcover().get(i) / 100.0   // 0..1
+                    h.getShortwave_radiation().get(i),
+                    h.getPrecipitation().get(i),
+                    h.getCloudcover().get(i) / 100.0
             ));
         }
 

@@ -1,0 +1,8 @@
+[
+  "windSpeedMs",
+  "solarIrradianceWm2",
+  "temperatureC",
+  "precipitationMm",
+  "cloudCover",
+  "maxCapacityKw"
+]

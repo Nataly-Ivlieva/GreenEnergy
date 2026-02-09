@@ -1,2 +1,7 @@
-package com.green.energy.api.domain;public class AnomalyType {
+package com.green.energy.api.domain;
+
+public enum AnomalyType {
+    NONE,
+    WARNING,
+    CRITICAL
 }

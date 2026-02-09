@@ -1,15 +1,16 @@
-package com.green.energy.simulator.power;
+package com.green.energy.simulation.power;
 
 import lombok.Builder;
-import lombok.Data;
+import lombok.Value;
 
-@Data
+@Value
 @Builder
 public class PowerOutput {
 
-    private double expectedKw;
-    private double actualKw;
+    double expectedKw;
+    double actualKw;
 
-    private boolean anomalous;
-    private String anomalyType;
+    boolean anomalous;
+    String anomalyType;
 }
+

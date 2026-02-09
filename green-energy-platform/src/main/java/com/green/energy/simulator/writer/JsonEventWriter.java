@@ -13,7 +13,10 @@ import java.nio.file.Path;
 public class JsonEventWriter {
 
     private static final Path OUTPUT =
-            Path.of("data", "historical_events.jsonl");
+            Path.of(System.getProperty("user.dir"))
+                    .getParent()
+                    .resolve("data")
+                    .resolve("historical_events.jsonl");
 
     private final BufferedWriter writer;
     private final ObjectMapper mapper =
@@ -26,6 +29,7 @@ public class JsonEventWriter {
     }
 
     public synchronized void write(HistoricalEvent event) throws IOException {
+        System.out.println(event);
         writer.write(mapper.writeValueAsString(event));
         writer.newLine();
     }

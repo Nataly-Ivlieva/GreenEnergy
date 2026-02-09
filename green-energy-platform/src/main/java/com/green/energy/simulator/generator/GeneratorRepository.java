@@ -1,7 +1,7 @@
 package com.green.energy.simulator.generator;
 
+import com.green.energy.simulation.generator.GeneratorType;
 import com.green.energy.simulator.model.Generator;
-import com.green.energy.simulator.model.GeneratorType;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -12,8 +12,6 @@ import java.util.Random;
 public class GeneratorRepository {
 
     private static final Random RANDOM = new Random();
-
-    // Bounding box Germany
     private static final double MIN_LAT = 47.27;
     private static final double MAX_LAT = 55.06;
     private static final double MIN_LON = 5.87;

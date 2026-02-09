@@ -1,16 +1,13 @@
-package com.green.energy.simulator.anomaly;
+package com.green.energy.simulation.anomaly;
 
-import com.green.energy.simulator.model.GeneratorType;
-import com.green.energy.simulator.power.PowerOutput;
-import org.springframework.stereotype.Component;
+import com.green.energy.simulation.power.PowerOutput;
+import com.green.energy.simulation.generator.GeneratorType;
 
 import java.util.Random;
 
-@Component
 public class AnomalyInjector {
 
     private static final double BASE_PROBABILITY = 0.02;
-
     private final Random random = new Random();
 
     public PowerOutput injectIfNeeded(
@@ -23,107 +20,68 @@ public class AnomalyInjector {
             return normal;
         }
 
-        return switch (type) {
-            case SOLAR -> solarAnomaly(normal, maxCapacity);
-            case WIND -> windAnomaly(normal, maxCapacity);
-            case HYDRO -> hydroAnomaly(normal, maxCapacity);
-        };
-    }
+        double expected = normal.getExpectedKw();
+        double actual;
 
-    // ================= SOLAR =================
+        switch (type) {
 
-    private PowerOutput solarAnomaly(PowerOutput normal, double maxCapacity) {
+            case WIND -> {
+                double r = random.nextDouble();
 
-        int pick = random.nextInt(4);
+                if (r < 0.6) { // partial curtailment
+                    actual = expected * randomBetween(0.4, 0.7);
+                } else if (r < 0.9) { // minor fault
+                    actual = expected * randomBetween(0.7, 0.9);
+                } else { // rare full stop
+                    actual = expected * randomBetween(0.05, 0.2);
+                }
+            }
 
-        double actual = switch (pick) {
+            case SOLAR -> {
+                if (expected < maxCapacity * 0.05) {
+                    actual = 0.0; // night / near-night
+                } else {
+                    double r = random.nextDouble();
+                    if (r < 0.7) {
+                        actual = expected * randomBetween(0.5, 0.8);
+                    } else {
+                        actual = expected * randomBetween(0.9, 1.05);
+                    }
+                }
+            }
 
-            // inverter failure
-            case 0 -> 0.0;
+            case HYDRO -> {
+                double r = random.nextDouble();
+                if (r < 0.6) {
+                    actual = expected * randomBetween(0.6, 0.85);
+                } else if (r < 0.9) {
+                    actual = expected * randomBetween(0.85, 1.05);
+                } else {
+                    actual = Math.min(
+                            expected * randomBetween(1.1, 1.2),
+                            maxCapacity * 1.2
+                    );
+                }
+            }
 
-            // shading / dirt
-            case 1 -> normal.getExpectedKw() * randomBetween(0.5, 0.8);
+            default -> actual = normal.getActualKw();
+        }
 
-            // sensor spike
-            case 2 -> Math.min(
-                    normal.getExpectedKw() * randomBetween(1.1, 1.4),
-                    maxCapacity * 1.1
-            );
-
-            // string failure
-            default -> normal.getExpectedKw() * randomBetween(0.6, 0.9);
-        };
-
-        return anomalous(normal, actual, "SOLAR_FAULT");
-    }
-
-    // ================= WIND =================
-
-    private PowerOutput windAnomaly(PowerOutput normal, double maxCapacity) {
-
-        int pick = random.nextInt(4);
-
-        double actual = switch (pick) {
-
-            // yaw error
-            case 0 -> normal.getExpectedKw() * randomBetween(0.7, 0.9);
-
-            // braking
-            case 1 -> 0.0;
-
-            // storm shutdown mimic
-            case 2 -> 0.0;
-
-            // spike but limited
-            default -> Math.min(
-                    normal.getExpectedKw() * randomBetween(1.2, 1.6),
-                    maxCapacity * 1.2
-            );
-        };
-
-        return anomalous(normal, actual, "WIND_FAULT");
-    }
-
-    // ================= HYDRO =================
-
-    private PowerOutput hydroAnomaly(PowerOutput normal, double maxCapacity) {
-
-        int pick = random.nextInt(4);
-
-        double actual = switch (pick) {
-
-            // turbine stop
-            case 0 -> 0.0;
-
-            // flood spike
-            case 1 -> Math.min(
-                    normal.getExpectedKw() * randomBetween(1.3, 2.0),
-                    maxCapacity * 1.5
-            );
-
-            // cavitation oscillation
-            case 2 -> normal.getExpectedKw() * randomBetween(0.8, 1.2);
-
-            // stuck gate flatline
-            default -> normal.getActualKw();
-        };
-
-        return anomalous(normal, actual, "HYDRO_FAULT");
-    }
-
-    // ================= Helpers =================
-
-    private PowerOutput anomalous(PowerOutput normal, double actual, String type) {
+        actual = clamp(actual, 0, maxCapacity);
 
         return PowerOutput.builder()
-                .expectedKw(normal.getExpectedKw())
+                .expectedKw(expected)
                 .actualKw(actual)
                 .anomalous(true)
-                .anomalyType(type)
+                .anomalyType(type.name() + "_FAULT")
                 .build();
     }
 
     private double randomBetween(double min, double max) {
         return min + (max - min) * random.nextDouble();
+    }
+
+    private double clamp(double v, double min, double max) {
+        return Math.max(min, Math.min(max, v));
     }
 }

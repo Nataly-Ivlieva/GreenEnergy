@@ -1,4 +1,4 @@
-package com.green.energy.simulator.config;
+package com.green.energy.api.config;
 
 import com.green.energy.simulation.anomaly.AnomalyInjector;
 import com.green.energy.simulation.power.PowerModel;

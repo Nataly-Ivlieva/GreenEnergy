@@ -1,9 +1,9 @@
 package com.green.energy.simulator.event;
 
+import com.green.energy.simulation.generator.GeneratorType;
+import com.green.energy.simulation.power.PowerOutput;
+import com.green.energy.simulation.weather.WeatherSnapshot;
 import com.green.energy.simulator.model.Generator;
-import com.green.energy.simulator.model.GeneratorType;
-import com.green.energy.simulator.power.PowerOutput;
-import com.green.energy.simulator.weather.WeatherDataPoint;
 import lombok.Builder;
 import lombok.Data;
 
@@ -13,39 +13,25 @@ import java.time.Instant;
 @Builder
 public class HistoricalEvent {
 
-    // --- Meta ---
     private Instant timestamp;
-
-    // --- Generator ---
     private String generatorId;
     private GeneratorType generatorType;
-
     private double latitude;
     private double longitude;
-
     private double maxCapacityKw;
-
-    // --- Weather ---
     private double temperatureC;
     private double windSpeedMs;
     private double solarIrradianceWm2;
     private double precipitationMm;
     private double cloudCover;
-
-    // --- Power ---
     private double expectedPowerKw;
     private double actualPowerKw;
-
-    // --- Anomaly ---
     private boolean anomalous;
     private String anomalyType;
 
-    /**
-     * Удобный фабричный метод
-     */
     public static HistoricalEvent from(
             Generator generator,
-            WeatherDataPoint weather,
+            WeatherSnapshot weather,
             PowerOutput power,
             Instant timestamp
     ) {
@@ -58,16 +44,13 @@ public class HistoricalEvent {
                 .latitude(generator.getLatitude())
                 .longitude(generator.getLongitude())
                 .maxCapacityKw(generator.getNominalPowerKw())
-
-                .temperatureC(weather.getTemperatureC())
-                .windSpeedMs(weather.getWindSpeedMs())
-                .solarIrradianceWm2(weather.getSolarIrradianceWm2())
-                .precipitationMm(weather.getPrecipitationMm())
-                .cloudCover(weather.getCloudCover())
-
+                .temperatureC(weather.temperatureC())
+                .windSpeedMs(weather.windSpeedMs())
+                .solarIrradianceWm2(weather.solarIrradianceWm2())
+                .precipitationMm(weather.precipitationMm())
+                .cloudCover(weather.cloudCover())
                 .expectedPowerKw(power.getExpectedKw())
                 .actualPowerKw(power.getActualKw())
-
                 .anomalous(power.isAnomalous())
                 .anomalyType(power.getAnomalyType())
 

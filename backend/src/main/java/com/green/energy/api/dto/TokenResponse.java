@@ -1,2 +1,3 @@
-package com.green.energy.api.dto;public class TokenResponse {
-}
+package com.green.energy.api.dto;
+
+public record TokenResponse(String token) {}

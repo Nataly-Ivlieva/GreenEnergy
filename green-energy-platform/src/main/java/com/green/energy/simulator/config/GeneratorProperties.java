@@ -13,16 +13,6 @@ public class GeneratorProperties {
 
     private LocalDate startDate;
     private LocalDate endDate;
-
     private int generators;
-
     private String outputFile;
-
-    public LocalDate getStartDate() {
-        return startDate;
-    }
-
-    public LocalDate getEndDate() {
-        return endDate;
-    }
 }

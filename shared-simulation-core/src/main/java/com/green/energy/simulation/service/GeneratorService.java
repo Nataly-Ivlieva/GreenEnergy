@@ -67,7 +67,7 @@ public class GeneratorService {
         // Apply noise
         // =============================
         PowerOutput noisy =
-                noiseApplier.apply(extremeAdjusted);
+                noiseApplier.apply(extremeAdjusted, gt);
 
         // =============================
         // Inject anomalies (faults)

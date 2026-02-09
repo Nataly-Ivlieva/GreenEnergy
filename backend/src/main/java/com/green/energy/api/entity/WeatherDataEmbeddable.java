@@ -1,7 +1,6 @@
 package com.green.energy.api.entity;
 
 import jakarta.persistence.*;
-import java.time.OffsetDateTime;
 
 @Embeddable
 public class WeatherDataEmbeddable {
@@ -10,6 +9,16 @@ public class WeatherDataEmbeddable {
         private Double solarIrradianceWm2;
         private Double precipitationMm;
         private Double cloudCover;
+
+        public WeatherDataEmbeddable(){}
+
+    public WeatherDataEmbeddable(double temperature_2m, double wind_speed_10m, double shortwave_radiation, double precipitation, double cloud_cover) {
+        this.temperatureC = temperature_2m;
+        this.windSpeedMs = wind_speed_10m;
+        this.solarIrradianceWm2 = shortwave_radiation;
+        this.precipitationMm = precipitation;
+        this.cloudCover = cloud_cover;
+    }
 
     public Double getTemperatureC() {
         return temperatureC;

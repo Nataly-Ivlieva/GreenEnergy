@@ -11,9 +11,7 @@ import java.time.LocalDate;
 
 @Component
 public class OpenMeteoClient {
-
     private final RestTemplate restTemplate;
-
     public OpenMeteoClient(RestTemplateBuilder builder) {
         this.restTemplate = builder.build();
     }

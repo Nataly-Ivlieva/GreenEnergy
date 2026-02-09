@@ -1,2 +1,15 @@
-package com.green.energy.api;public class GreenEnergyApiApplication {
+package com.green.energy.api;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
+
+@EnableScheduling
+@SpringBootApplication
+
+public class GreenEnergyApiApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(GreenEnergyApiApplication.class, args);
+    }
 }
