@@ -8,19 +8,18 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 public interface EnergyMeasurementRepository
-        extends JpaRepository<EnergyMeasurementEntity, Long> {
+        extends JpaRepository<EnergyMeasurementEntity, UUID> {
 
     @Query("""
         select em from EnergyMeasurementEntity em
         where em.generator.id = :generatorId
         order by em.timestamp desc
-        limit 1
+        limit 240
     """)
-    Optional<EnergyMeasurementEntity> findLatestByGenerator(UUID generatorId);
+    List<EnergyMeasurementEntity> findLatestByGenerator(UUID generatorId);
 
     @Query("""
         select e from EnergyMeasurementEntity e

@@ -7,6 +7,9 @@ Thumbs.db
 backend/.idea/
 *.iml
 out/
+.idea/
+shared-simulation-core/.idea/
+green-energy-platform/.idea/
 
 # VS Code
 .vscode/

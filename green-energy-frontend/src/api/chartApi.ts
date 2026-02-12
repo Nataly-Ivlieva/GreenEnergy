@@ -1,9 +1,7 @@
 import { api } from "./api";
 
 export function fetchChart(params?: {
-  from?: string;
-  to?: string;
-  type?: string;
+  id?: string;
 }) {
   const cleaned = Object.fromEntries(
     Object.entries(params ?? {}).filter(

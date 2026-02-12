@@ -18,6 +18,15 @@ public class EnergyMeasurementEntity {
     private WeatherDataEmbeddable weather;
     private OffsetDateTime timestamp;
     private Double actualPowerKw;
+    private Double expectedPowerKw;
+
+    public Double getExpectedPowerKw() {
+        return expectedPowerKw;
+    }
+
+    public void setExpectedPowerKw(Double expectedPowerKw) {
+        this.expectedPowerKw = expectedPowerKw;
+    }
 
     public WeatherDataEmbeddable getWeather() {
         return weather;

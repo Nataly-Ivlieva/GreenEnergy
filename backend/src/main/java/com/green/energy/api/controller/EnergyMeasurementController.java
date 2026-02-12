@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.OffsetDateTime;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/charts")
@@ -22,12 +23,10 @@ public class EnergyMeasurementController {
 
     @GetMapping
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
-    public List<EnergyChartPointResponse> chart(
-            @RequestParam(required = false) OffsetDateTime from,
-            @RequestParam(required = false) OffsetDateTime to,
-            @RequestParam(required = false) GeneratorType type
+    public List<EnergyChartPointResponse> generator(
+             @RequestParam(required = false) UUID id
     ) {
-        return service.getChart(from, to, type);
+        return service.getChartForGenerator(id);
     }
 
 }

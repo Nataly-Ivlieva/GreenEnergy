@@ -1,0 +1,74 @@
+/* === Root colors === */
+:root {
+  --green-main: #16a34a;
+  --green-dark: #15803d;
+  --green-light: #dcfce7;
+  --text-green: #166534;
+}
+
+/* === Header === */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 28px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* === Left side === */
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-logo {
+  height: 32px;
+}
+
+.header-title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text-green);
+}
+
+/* === Navigation === */
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-link {
+  text-decoration: none;
+  font-weight: 500;
+  color: var(--green-main);
+  transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+  color: var(--green-dark);
+}
+
+/* === Button === */
+.logout-button {
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--green-main);
+  background-color: var(--green-main);
+  color: #ffffff;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.logout-button:hover {
+  background-color: var(--green-dark);
+  border-color: var(--green-dark);
+}
+
+.logout-button:active {
+  transform: scale(0.97);
+}

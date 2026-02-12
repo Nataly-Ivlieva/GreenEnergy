@@ -9,7 +9,6 @@
     <groupId>com.green.energy</groupId>
     <artifactId>generator-simulator</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-
     <name>generator-simulator</name>
     <description>Historical generator simulator for green energy</description>
 
@@ -32,6 +31,11 @@
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
         <!-- REST client (Open-Meteo) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -42,6 +46,17 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.30</version>
+            <scope>provided</scope>
         </dependency>
 
         <!-- Lombok -->
@@ -55,7 +70,16 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
+        <!-- JPA -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
 
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+        </dependency>
         <!-- Test -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -66,13 +90,7 @@
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.green.energy</groupId>
-            <artifactId>shared-simulation-core</artifactId>
-            <version>1.0.1</version>
-        </dependency>
     </dependencies>
-
     <build>
         <plugins>
             <plugin>

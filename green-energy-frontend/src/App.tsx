@@ -1,6 +1,5 @@
 import LoginPage from "./pages/LoginPage";
 import MapPage from "./pages/MapPage";
-import ChartsPage from "./pages/ChartsPage";
 import AdminPage from "./pages/AdminPage";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { Header } from "./components/Header";
@@ -23,15 +22,6 @@ export function App() {
           element={
             <ProtectedRoute>
               <MapPage />
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/charts"
-          element={
-            <ProtectedRoute>
-              <ChartsPage />
             </ProtectedRoute>
           }
         />

@@ -11,19 +11,3 @@ api.interceptors.request.use(config => {
   }
   return config;
 });
-
-/*api.interceptors.response.use(
-  r => r,
-  e => {
-    if (e.response?.status === 401) {
-      localStorage.removeItem("token");
-      window.location.href = "/login";
-    }
-
-    if (e.response?.status === 403) {
-      window.location.href = "/login";
-    }
-
-    return Promise.reject(e);
-  }
-);*/

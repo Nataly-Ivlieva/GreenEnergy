@@ -1,54 +1,43 @@
 import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../auth/AuthContext";
 import Logo from "../assets/logo.png";
+import "./Header.css";
 
 export function Header() {
   const navigate = useNavigate();
-  const role = localStorage.getItem("role");
+  const { isAuthenticated, isAdmin, logout } = useAuth();
 
-  const logout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("role");
+  const handleLogout = () => {
+    logout();
     navigate("/login");
   };
 
   return (
-    <header style={styles.header}>
-      <div style={styles.left}>
-        <img src={Logo} alt="logo" style={styles.logo} />
-        <h2>Green Energy Monitoring</h2>
+    <header className="header">
+      <div className="header-left">
+        <img src={Logo} alt="Logo" className="header-logo" />
+        <h2 className="header-title">Green Energy Monitoring</h2>
       </div>
 
-      <nav style={styles.nav}>
-        <Link to="/map">Karte</Link>
-        <Link to="/charts">Diagramme</Link>
+      <nav className="header-nav">
+        {isAuthenticated && (
+          <Link to="/map" className="nav-link">
+            Karte
+          </Link>
+        )}
 
-        {role === "ADMIN" && <Link to="/admin">Benutzerregistrierung</Link>}
+        {isAdmin && (
+          <Link to="/admin" className="nav-link">
+            Benutzerregistrierung
+          </Link>
+        )}
 
-        <button onClick={logout}>Abmelden</button>
+        {isAuthenticated && (
+          <button className="logout-button" onClick={handleLogout}>
+            Abmelden
+          </button>
+        )}
       </nav>
     </header>
   );
 }
-
-const styles = {
-  header: {
-    display: "flex",
-    justifyContent: "space-between",
-    padding: "12px 24px",
-    background: "#0f172a",
-    color: "white",
-  },
-  left: {
-    display: "flex",
-    gap: "12px",
-    alignItems: "center",
-  },
-  logo: {
-    height: 32,
-  },
-  nav: {
-    display: "flex",
-    gap: "16px",
-    alignItems: "center",
-  },
-};

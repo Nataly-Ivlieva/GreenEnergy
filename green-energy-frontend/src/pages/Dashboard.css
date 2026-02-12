@@ -1,0 +1,40 @@
+.dashboard {
+  padding: 24px;
+  background: #ffffff;
+}
+
+.dashboard-container {
+  display: flex;
+  gap: 24px;
+  align-items: stretch;
+}
+
+.card {
+  flex: 1;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.card-title {
+  margin-bottom: 16px;
+  color: #166534;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.map {
+  height: 500px;
+  width: 100%;
+  border-radius: 8px;
+}
+
+.info-text {
+  color: #166534;
+}
+
+.loading {
+  color: #16a34a;
+  font-weight: 500;
+}

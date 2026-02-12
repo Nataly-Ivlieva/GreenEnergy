@@ -1,17 +1,18 @@
 import { Navigate } from "react-router-dom";
+import { useAuth } from "../auth/AuthContext";
 import type { JSX } from "react/jsx-runtime";
 
-export function ProtectedRoute({
-  children,
-  role,
-}: {
-  children: JSX.Element;
-  role?: "USER" | "ADMIN";
-}) {
-  const token = localStorage.getItem("token");
-  const userRole = localStorage.getItem("role");
+type AppRole = "USER" | "ADMIN";
 
-  if (!token) {
+type ProtectedRouteProps = {
+  children: JSX.Element;
+  role?: AppRole;
+};
+
+export function ProtectedRoute({ children, role }: ProtectedRouteProps) {
+  const { isAuthenticated, role: userRole } = useAuth();
+
+  if (!isAuthenticated) {
     return <Navigate to="/login" replace />;
   }
 
