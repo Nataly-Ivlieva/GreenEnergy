@@ -28,3 +28,38 @@ Provides read-only access to aggregated real-time and historical data. This API 
 
 Frontend (Read-Only, Map-Based Visualization)
 A lightweight frontend application that visualizes aggregated renewable energy data on a geographic map using the REST API.
+
+How to Run the Services
+
+The core microservices are containerized using Docker. Each service can be built and started independently.
+
+1️ Backend Service (Java, Spring Boot)
+docker build -t backend .
+docker run -p 8081:8080 backend
+
+The backend will be available at:
+http://localhost:8081
+
+2️ Data Generator & Ingestion Service
+docker build -t generator-simulator .
+docker run -p 8082:8080 generator-simulator
+
+The service will be available at:
+http://localhost:8082
+
+3️ Machine Learning Model API (Python)
+docker build -t energy-api -f ml/api/Dockerfile .
+docker run -p 8000:8000 -e ENERGY_API_KEY=test-key energy-api
+
+The Model API will be available at:
+http://localhost:8000
+
+Notes
+
+Ensure Docker is installed and running.
+
+Services may require environment variables (e.g., API keys or database credentials).
+
+The ML API requires the ENERGY_API_KEY environment variable.
+
+Make sure that the database service is running before starting dependent services.
