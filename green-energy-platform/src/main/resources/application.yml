@@ -1,11 +1,11 @@
 spring:
   application:
     name: generator-simulator
+  spring:
   datasource:
-    url: jdbc:postgresql://host.docker.internal:5432/green_energy
-    username: postgres
-    password: postgres
-    driver-class-name: org.postgresql.Driver
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
   jpa:
     hibernate:
       ddl-auto: update
@@ -30,4 +30,4 @@ logging:
 
 interservice:
   ml:
-    base-url: http://ml-api:8000
+    base-url: ${INTERSERVICE_ML_BASE_URL}
