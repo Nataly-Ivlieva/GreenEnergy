@@ -5,6 +5,7 @@ from fastapi import FastAPI, Depends, HTTPException, Header
 from pydantic import BaseModel
 from inference.predict import predict_expected_power, predict_expected_power_batch
 from pathlib import Path
+from fastapi import Request
 
 MODEL_PATH = (
     Path(__file__).resolve().parents[1]
@@ -62,3 +63,9 @@ def predict_batch(records: list[Dict]):
 @app.get("/model/status", response_model=ModelStatusResponse)
 def model_status():
     return ModelStatusResponse(trained=MODEL_PATH.exists())
+
+@app.post("/predict/batch/debug", dependencies=[Depends(verify_api_key)])
+async def predict_batch_debug(request: Request):
+    body = await request.body()
+    print("RAW BODY:", body.decode())
+    return {"received": True}

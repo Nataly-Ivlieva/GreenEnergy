@@ -38,12 +38,13 @@ services:
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: postgres
       INTERSERVICE_ML_BASE_URL: http://ml-api:8000
+      ML_API_KEY: super-secret-key
     volumes:
       - ./data:/app/data
 
   backend:
     build:
-      context: ./backend   # <-- если папка backend
+      context: ./backend
     container_name: backend
     ports:
       - "8081:8081"

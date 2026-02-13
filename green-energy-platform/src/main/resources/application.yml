@@ -31,3 +31,4 @@ logging:
 interservice:
   ml:
     base-url: ${INTERSERVICE_ML_BASE_URL}
+    api-key: ${ML_API_KEY}
