@@ -4,41 +4,30 @@ A scalable microservice-based backend platform for processing and reporting rene
 
 The system is designed with a strong focus on:
 
-reliability
-
-scalability
-
-maintainability
-
-reproducibility
-
-clear separation of concerns
+- reliability
+- scalability
+- maintainability
+- reproducibility
+- clear separation of concerns
 
 It processes weather-driven renewable energy generation (solar, wind, hydro) and machine learning predictions on datasets exceeding 1M+ time-stamped records.
 
 ## Key Features
 
-Simulation of renewable energy production using real weather data
-
-Near real-time data processing & aggregation
-
-ML-powered power output prediction
-
-Time-series storage & historical analytics
-
-Map-based visualization & reporting
-
-Re-trainable ML pipeline
+- Simulation of renewable energy production using real weather data
+- Near real-time data processing & aggregation
+- ML-powered power output prediction
+- Time-series storage & historical analytics
+- Map-based visualization & reporting
+- Re-trainable ML pipeline
 
 ## Architecture
 
 The backend follows a Dockerized microservice architecture.
 
-containerized real-time inference services
-
-offline ML training pipeline
-
-internal service communication via Docker network
+- containerized real-time inference services
+- offline ML training pipeline
+- internal service communication via Docker network
 
 This structure mirrors real-world MLOps and data platform design patterns.
 
@@ -62,51 +51,40 @@ This structure mirrors real-world MLOps and data platform design patterns.
 
 Port: 8082
 
-simulates energy production
-
-integrates weather features
-
-generates historical datasets
-
-calls ML inference API
-
-runs on scheduled intervals
+- simulates energy production
+- integrates weather features
+- generates historical datasets
+- calls ML inference API
+- runs on scheduled intervals
 
 ### 2️ Backend Service (Java, Spring Boot)
 
 Port: 8081
 
-stores & aggregates data
-
-exposes REST endpoints
-
-central reporting layer
+- stores & aggregates data
+- exposes REST endpoints
+- central reporting layer
 
 ### 3️ Time-Series Storage (PostgreSQL)
 
 Port: 5432
 
-raw & aggregated data storage
-
-persistent via Docker volumes
+- raw & aggregated data storage
+- persistent via Docker volumes
 
 ### 4️ Machine Learning Module (Python)
 
 Online Inference API (Docker, Port 8000)
 
-serves predictions via REST
-
-loads serialized model
-
-provides status endpoint
+- serves predictions via REST
+- loads serialized model
+- provides status endpoint
 
 Offline Training Pipeline (local batch process)
 
-builds training dataset
-
-retrains model daily
-
-updates model.pkl
+- builds training dataset
+- retrains model daily
+- updates model.pkl
 
 This separation ensures uninterrupted inference and flexible experimentation.
 
@@ -116,15 +94,15 @@ Run locally:
 
 npm start
 
-map-based visualization
+This starts:
 
-demo authentication
-
-read-only reporting interface
+- map-based visualization
+- demo authentication
+- read-only reporting interface
 
 Frontend is intentionally not containerized to simplify development.
 
-Running the Platform
+## Running the Platform
 
 From the project root:
 
@@ -132,59 +110,47 @@ docker compose up --build
 
 This starts:
 
-PostgreSQL
-
-Backend
-
-Generator
+- PostgreSQL
+- Backend
+- Generator
 
 ML Inference API
 
 Stop services:
 
-docker compose down
+- docker compose down
 
 Remove volumes:
 
-docker compose down -v
+- docker compose down -v
 
 ### Local Endpoints
 
 Service URL
-Backend API http://localhost:8081
 
-Generator http://localhost:8082
-
-ML API http://localhost:8000
+- Backend API http://localhost:8081
+- Generator http://localhost:8082
+- ML API http://localhost:8000
 
 ## Environment Configuration
 
 Configured via Docker Compose:
 
-SPRING_DATASOURCE_URL
-
-SPRING_DATASOURCE_USERNAME
-
-SPRING_DATASOURCE_PASSWORD
-
-INTERSERVICE_ML_BASE_URL
+- SPRING_DATASOURCE_URL
+- SPRING_DATASOURCE_USERNAME
+- SPRING_DATASOURCE_PASSWORD
+- INTERSERVICE_ML_BASE_URL
 
 Docker internal hostnames:
 
-postgres
+- postgres
+- ml-api
 
-ml-api
+## Design Principles
 
-Design Principles
-
-microservice separation
-
-containerized backend infrastructure
-
-internal service discovery via Docker DNS
-
-offline + online ML workflow separation
-
-batch vs real-time workload isolation
-
-reproducible local environment
+- microservice separation
+- containerized backend infrastructure
+- internal service discovery via Docker DNS
+- offline + online ML workflow separation
+- batch vs real-time workload isolation
+- reproducible local environment
