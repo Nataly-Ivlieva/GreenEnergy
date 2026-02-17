@@ -138,7 +138,7 @@ Backend
 
 Generator
 
-## ML Inference API
+ML Inference API
 
 Stop services:
 
