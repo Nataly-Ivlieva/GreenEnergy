@@ -1,4 +1,4 @@
-Green Energy Real-Time Data Platform
+# Green Energy Real-Time Data Platform
 
 A scalable microservice-based backend platform for processing and reporting renewable energy time-series data.
 
@@ -16,7 +16,7 @@ clear separation of concerns
 
 It processes weather-driven renewable energy generation (solar, wind, hydro) and machine learning predictions on datasets exceeding 1M+ time-stamped records.
 
-Key Features
+## Key Features
 
 Simulation of renewable energy production using real weather data
 
@@ -30,7 +30,7 @@ Map-based visualization & reporting
 
 Re-trainable ML pipeline
 
-Architecture
+## Architecture
 
 The backend follows a Dockerized microservice architecture.
 
@@ -56,9 +56,9 @@ This structure mirrors real-world MLOps and data platform design patterns.
 
 ![Login](docs/Adminpanel.png)
 
-System Components
+## System Components
 
-1️ Generator & Ingestion Service (Java, Spring Boot)
+### 1️ Generator & Ingestion Service (Java, Spring Boot)
 
 Port: 8082
 
@@ -72,7 +72,7 @@ calls ML inference API
 
 runs on scheduled intervals
 
-2️ Backend Service (Java, Spring Boot)
+### 2️ Backend Service (Java, Spring Boot)
 
 Port: 8081
 
@@ -82,7 +82,7 @@ exposes REST endpoints
 
 central reporting layer
 
-3️ Time-Series Storage (PostgreSQL)
+### 3️ Time-Series Storage (PostgreSQL)
 
 Port: 5432
 
@@ -90,7 +90,7 @@ raw & aggregated data storage
 
 persistent via Docker volumes
 
-4️ Machine Learning Module (Python)
+### 4️ Machine Learning Module (Python)
 
 Online Inference API (Docker, Port 8000)
 
@@ -110,7 +110,7 @@ updates model.pkl
 
 This separation ensures uninterrupted inference and flexible experimentation.
 
-5️ Frontend (React / Vue)
+### 5️ Frontend (React / Vue)
 
 Run locally:
 
@@ -138,7 +138,7 @@ Backend
 
 Generator
 
-ML Inference API
+## ML Inference API
 
 Stop services:
 
@@ -148,7 +148,7 @@ Remove volumes:
 
 docker compose down -v
 
-Local Endpoints
+### Local Endpoints
 
 Service URL
 Backend API http://localhost:8081
@@ -157,7 +157,7 @@ Generator http://localhost:8082
 
 ML API http://localhost:8000
 
-Environment Configuration
+## Environment Configuration
 
 Configured via Docker Compose:
 
