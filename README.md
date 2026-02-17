@@ -47,7 +47,7 @@ This structure mirrors real-world MLOps and data platform design patterns.
 
 ## System Components
 
-### 1️ Generator & Ingestion Service (Java, Spring Boot)
+### 1️. Generator & Ingestion Service (Java, Spring Boot)
 
 Port: 8082
 
@@ -57,7 +57,7 @@ Port: 8082
 - calls ML inference API
 - runs on scheduled intervals
 
-### 2️ Backend Service (Java, Spring Boot)
+### 2️. Backend Service (Java, Spring Boot)
 
 Port: 8081
 
@@ -65,14 +65,14 @@ Port: 8081
 - exposes REST endpoints
 - central reporting layer
 
-### 3️ Time-Series Storage (PostgreSQL)
+### 3️. Time-Series Storage (PostgreSQL)
 
 Port: 5432
 
 - raw & aggregated data storage
 - persistent via Docker volumes
 
-### 4️ Machine Learning Module (Python)
+### 4️. Machine Learning Module (Python)
 
 Online Inference API (Docker, Port 8000)
 
@@ -88,7 +88,7 @@ Offline Training Pipeline (local batch process)
 
 This separation ensures uninterrupted inference and flexible experimentation.
 
-### 5️ Frontend (React / Vue)
+### 5️. Frontend (React / Vue)
 
 Run locally:
 
